@@ -18,6 +18,12 @@ public class Painter {
     this.paintableObjects = paintableObjects;
   }
 
+  public void add(Paintable paintableObject) {
+    if (this.paintableObjects != null) {
+      this.paintableObjects.add(paintableObject);
+    }
+  }
+
   public void paintAllObjects() {
     for (Paintable paintable : paintableObjects) {
       paintable.paint();

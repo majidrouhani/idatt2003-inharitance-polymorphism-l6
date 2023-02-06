@@ -1,15 +1,15 @@
 package edu.ntnu.idatt2001.lectures.interfaces.figur;
 
 public class Circle implements Paintable {
-  private String farge;
+  private String color;
 
-  public Circle(String farge) {
-    this.farge = farge;
+  public Circle(String color) {
+    this.color = color;
   }
 
   @Override
   public void paint() {
-    System.out.println("Painting circle..." + farge);
+    System.out.println("Painting circle..." + color);
   }
 
 }

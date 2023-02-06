@@ -1,14 +1,14 @@
 package edu.ntnu.idatt2001.lectures.interfaces.figur;
 
 public class Rectangle implements Paintable {
-  private String farge;
+  private String color;
 
-  public Rectangle(String farge) {
-    this.farge = farge;
+  public Rectangle(String color) {
+    this.color = color;
   }
 
   @Override
   public void paint() {
-    System.out.println("Painting rectangle..." + farge);
+    System.out.println("Painting rectangle..." + color);
   }
 }

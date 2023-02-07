@@ -24,6 +24,11 @@ public class Fish extends Animal implements Comparable<Animal>, Swimable, Eatabl
   }
 
   @Override
+  public String toString() {
+    return "Fish [name=" + name + "]";
+  }
+
+  @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;

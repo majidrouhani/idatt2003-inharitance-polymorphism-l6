@@ -12,11 +12,11 @@ public class App {
   public static void main(String[] args) {
     Painter painter = new Painter();
 
-    painter.add(new Rectangle("Green"));
-    painter.add(new Rectangle("Red"));
-    painter.add(new Circle("Blue"));
-    painter.add(new Circle("Yellow"));
-    painter.add(new Circle("Black"));
+    painter.add(new Rectangle("Green", 10, 20));
+    painter.add(new Rectangle("Red", 20, 30));
+    painter.add(new Circle("Blue", 10));
+    painter.add(new Circle("Yellow", 20));
+    painter.add(new Circle("Black", 30));
 
     painter.paintAllObjects();
   }

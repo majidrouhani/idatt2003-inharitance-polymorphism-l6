@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2003.lectures.interfaces.animal;
 
+import java.time.LocalDate;
 
 /**
  * Represents a Cat, which is a type of Animal.
@@ -7,7 +8,11 @@ package edu.ntnu.idatt2003.lectures.interfaces.animal;
  * Implements the Walkable and Eatable interfaces.
  */
 public class Cat extends Animal implements Comparable<Animal>, Walkable, Eatable {
-  private final String name;
+  private final int numberOfLives;
+
+  public int getNumberOfLives() {
+    return numberOfLives;
+  }
 
   /**
    * Constructs a Cat object with the specified name and number of legs.
@@ -15,9 +20,9 @@ public class Cat extends Animal implements Comparable<Animal>, Walkable, Eatable
    * @param name      the name of the cat
    * @param noOfLegs  the number of legs the cat has
    */
-  public Cat(String name, int noOfLegs) {
-    super(noOfLegs);
-    this.name = name;
+  public Cat(String name, LocalDate birthDate, int numberOfLives) {
+    super(name, birthDate);
+    this.numberOfLives = numberOfLives;
   }
 
   /**
@@ -40,60 +45,6 @@ public class Cat extends Animal implements Comparable<Animal>, Walkable, Eatable
     return true;
   }
 
-  /**
-   * Gets the name of the cat.
-   * 
-   * @return the name of the cat
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Returns a string representation of the cat.
-   * 
-   * @return a string representation of the cat
-   */
-  @Override
-  public String toString() {
-    return "Cat [name=" + name + "]";
-  }
-
-  /**
-   * Generates a hash code for the cat.
-   * 
-   * @return the hash code value for the cat
-   */
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
-    return result;
-  }
-
-  /**
-   * Checks if the cat is equal to another object.
-   * 
-   * @param obj  the object to compare with
-   * @return true if the cat is equal to the other object, false otherwise
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Cat other = (Cat) obj;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
-    return true;
-  }
 
   /**
    * Compares the cat to another animal based on the number of legs.
@@ -102,11 +53,26 @@ public class Cat extends Animal implements Comparable<Animal>, Walkable, Eatable
    * @return 1 if the cat has the same number of legs as the other animal, -1 otherwise
    */
   @Override
-  public int compareTo(Animal a) {
-    if (this.getNoOfLegs() == a.getNoOfLegs()) {
-      return 1;
-    } else {
-      return -1;
+  public int compareTo(Animal anotherAnimal) {
+    if (anotherAnimal instanceof Cat) {
+      Cat anotherCat = (Cat) anotherAnimal;
+      if (this.getNumberOfLives() == anotherCat.getNumberOfLives()) {
+        return 0;
+      } else if (this.getNumberOfLives() > anotherCat.getNumberOfLives()) {
+        return 1;
+      } else {
+        return -1;
+      }
     }
+    return 0;
+  }
+
+  @Override
+  public String toString() {
+    return "Cat{" +
+      "name='" + getName() + '\'' +
+      ", age=" + super.getAge() +
+      ", numberOfLives=" + numberOfLives +
+      '}';
   }
 }

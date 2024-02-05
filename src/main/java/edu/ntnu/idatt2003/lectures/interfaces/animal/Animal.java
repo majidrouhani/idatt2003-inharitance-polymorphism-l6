@@ -1,19 +1,23 @@
 package edu.ntnu.idatt2003.lectures.interfaces.animal;
 
+import java.time.LocalDate;
+
 /**
  * The Animal class represents an abstract animal.
  * It implements the Moveable interface and provides common functionality for all animals.
  */
 public abstract class Animal implements Moveable {
-  private final int noOfLegs;
+  private final String name;
+  private final LocalDate birthDate;
   
   /**
    * Constructs an Animal object with the specified number of legs.
    *
-   * @param noOfLegs the number of legs the animal has
+   * @param name the number of legs the animal has
    */
-  protected Animal(int noOfLegs) {
-    this.noOfLegs = noOfLegs;
+  protected Animal(String name, LocalDate birthDate ) {
+    this.name = name;
+    this.birthDate = birthDate;
   }
 
   /**
@@ -27,11 +31,20 @@ public abstract class Animal implements Moveable {
   }
 
   /**
-   * Gets the number of legs the animal has.
+   * Gets the name the animal.
    *
-   * @return the number of legs
+   * @return the name of the animal
    */
-  public int getNoOfLegs() {
-    return noOfLegs;
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * This method would return the age of the animal. All animals age, so this would be a common method.
+   * 
+   *  @return the age of the animal
+   */
+  public float getAge() {
+    return LocalDate.now().getYear() - birthDate.getYear();
   }
 }

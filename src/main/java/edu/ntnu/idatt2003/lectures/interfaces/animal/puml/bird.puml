@@ -1,0 +1,50 @@
+@startuml
+
+interface Moveable {
+  canMove(): boolean;
+}
+
+ abstract class Animal implements Moveable {
+  - noOfLegs : int {readOnly};
+  # Animal(int noOfLegs);
+  + canMove(): boolean;
+  + getNoOfLegs(): int;
+}
+
+interface Flyable extends Moveable {
+  canFly(): boolean;
+}
+
+interface Swimable extends Moveable {
+  canSwim(): boolean;
+}
+
+interface Walkable extends Moveable {
+  canWalk() : boolean;
+}
+
+interface Comparable<T> {
+  +compareTo(o : T) : int
+}
+
+class Bird {
+  -name : String
+  +Bird(name : String, noOfLegs : int)
+  +canEat() : boolean
+  +canFly() : boolean
+  +canWalk() : boolean
+  +getName() : String
+  +toString() : String
+  +hashCode() : int
+  +equals(obj : Object) : boolean
+  +compareTo(a : Animal) : int
+}
+
+Bird --|> Animal
+Bird ..|> Comparable
+Bird ..|> Walkable
+Bird ..|> Flyable
+Bird ..|> Eatable
+
+
+@enduml

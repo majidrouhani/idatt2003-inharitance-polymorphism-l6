@@ -1,16 +1,21 @@
 package edu.ntnu.idatt2003.lectures.interfaces.animal;
 
+import java.time.LocalDate;
 
 /**
  * Represents a fish.
  * Inherits from the Animal class and implements the Comparable, Swimable, and Eatable interfaces.
  */
 public class Fish extends Animal implements Comparable<Animal>, Swimable, Eatable {
-  private final String name;
+  private final String waterType;
 
-  public Fish(String name) {
-    super(0);
-    this.name = name;
+  public String getWaterType() {
+    return waterType;
+  }
+
+  public Fish(String name, LocalDate birthDate, String waterType) {
+    super(name, birthDate);
+    this.waterType = waterType;
   }
 
   @Override
@@ -23,20 +28,13 @@ public class Fish extends Animal implements Comparable<Animal>, Swimable, Eatabl
     return true;
   }
 
-  public String getName() {
-    return name;
-  }
 
-  @Override
-  public String toString() {
-    return "Fish [name=" + name + "]";
-  }
-
+  
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
+    result = prime * result + ((waterType == null) ? 0 : waterType.hashCode());
     return result;
   }
 
@@ -49,20 +47,39 @@ public class Fish extends Animal implements Comparable<Animal>, Swimable, Eatabl
     if (getClass() != obj.getClass())
       return false;
     Fish other = (Fish) obj;
-    if (name == null) {
-      if (other.name != null)
+    if (waterType == null) {
+      if (other.waterType != null)
         return false;
-    } else if (!name.equals(other.name))
+    } else if (!waterType.equals(other.waterType))
       return false;
     return true;
   }
 
   @Override
-  public int compareTo(Animal a) {
-    if (a.getNoOfLegs() == 0) {
-      return 1;
-    } else {
-      return -1;
+  public int compareTo(Animal anotherAnimal) {
+    if (anotherAnimal instanceof Fish) {
+      Fish anotherDog = (Fish) anotherAnimal;
+
+      int result = this.waterType.compareTo(anotherDog.getWaterType());
+
+      if (result < 0) {
+        return -1;
+      } else if (result > 0) {
+        return 1;
+      } else {
+        return 0;
+      }
+
     }
+    return 0;
+  }
+
+  @Override
+  public String toString() {
+    return "Fish{" +
+      "name='" + getName() + '\'' +
+      ", age=" + super.getAge() +
+      ", waterType='" + waterType + '\'' +
+      '}';
   }
 }

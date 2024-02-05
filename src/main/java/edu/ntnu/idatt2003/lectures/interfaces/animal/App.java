@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2003.lectures.interfaces.animal;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,36 +11,20 @@ import java.util.logging.Logger;
  */
 public class App {
   private static final Logger log = Logger.getLogger(App.class.getName());
-  private static final String  SAME_NO_LEGS= "Same number of legs";
-  private static final String  DIFF_NO_LEGS= "Same number of legs";
 
   public static void main(String args[]) {
-    String msg = "";
+    List<Animal> animals = List.of(
+      new Cat("Misty", LocalDate.of(2015, 5, 15), 9),
+      new Dog("Buddy", LocalDate.of(2018, 8, 20), "Golden Retriever"),
+      new Bird("parrot", LocalDate.of(2019, 10, 1), 2),
+      new Fish("fish", LocalDate.of(2019, 10, 1), "saltwater"),
+      new Exocoetidae("flyingFish", LocalDate.of(2019, 10, 1), "saltwater", 2.5)
+    );
 
-    Cat cat = new Cat("Luna",4);
-    Dog dog = new Dog("Prince",4);
-    Bird bird = new Bird("Silkie Rooster",2);
-    Fish fish = new Fish("salmon");
-    Exocoetidae flyingFish = new Exocoetidae("exocoetidae");
 
-    msg = "Comparing dog and cat: "+(dog.compareTo(cat) > 0 ? SAME_NO_LEGS : DIFF_NO_LEGS);
-    log.log(Level.INFO, "{0}", msg);
-
-    msg = "Comparing dog and bird: "+(dog.compareTo(bird) > 0 ? SAME_NO_LEGS : DIFF_NO_LEGS);
-    log.log(Level.INFO, "{0}", msg);
-
-    msg = "Comparing fish and bird: "+(fish.compareTo(bird) > 0 ? SAME_NO_LEGS : DIFF_NO_LEGS);
-    log.log(Level.INFO, "{0}", msg);
-
-    msg = "Comparing flyingFish and bird: "+(flyingFish.compareTo(bird) > 0 ? SAME_NO_LEGS : DIFF_NO_LEGS);
-    log.log(Level.INFO, "{0}", msg);
-
-    Cat myCat = new Cat("Luna",4);
-
-    if (myCat.equals(cat)) {
-      log.log(Level.INFO, "{0}", "This is my cat!");
+    for (Animal animal : animals) {
+      log.log(Level.INFO, "{0}", animal);
     }
 
-    log.log(Level.INFO, "{0}", flyingFish.canFly());
   }
 }

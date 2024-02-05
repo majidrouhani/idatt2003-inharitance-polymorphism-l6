@@ -1,0 +1,120 @@
+@startuml
+
+interface Moveable {
+  canMove(): boolean;
+}
+
+ abstract class Animal implements Moveable {
+  - noOfLegs : int {readOnly};
+  # Animal(int noOfLegs);
+  + canMove(): boolean;
+  + getNoOfLegs(): int;
+}
+
+interface Flyable extends Moveable {
+  canFly(): boolean;
+}
+
+interface Swimable extends Moveable {
+  canSwim(): boolean;
+}
+
+interface Walkable extends Moveable {
+  canWalk() : boolean;
+}
+
+interface Comparable<T> {
+  +compareTo(o : T) : int
+}
+
+class Bird {
+  -name : String
+  +Bird(name : String, noOfLegs : int)
+  +canEat() : boolean
+  +canFly() : boolean
+  +canWalk() : boolean
+  +getName() : String
+  +toString() : String
+  +hashCode() : int
+  +equals(obj : Object) : boolean
+  +compareTo(a : Animal) : int
+}
+
+Bird --|> Animal
+Bird ..|> Comparable
+Bird ..|> Walkable
+Bird ..|> Flyable
+Bird ..|> Eatable
+
+class Cat {
+  -name : String
+  +Cat(name : String, noOfLegs : int)
+  +canEat() : boolean
+  +canWalk() : boolean
+  +getName() : String
+  +toString() : String
+  +hashCode() : int
+  +equals(obj : Object) : boolean
+  +compareTo(a : Animal) : int
+}
+
+Cat --|> Animal
+Cat ..|> Comparable
+Cat ..|> Walkable
+Cat ..|> Eatable
+
+class Dog {
+  -name : String
+  +Dog(name : String, noOfLegs : int)
+  +canEat() : boolean
+  +canWalk() : boolean
+  +getName() : String
+  +toString() : String
+  +hashCode() : int
+  +equals(obj : Object) : boolean
+  +compareTo(a : Animal) : int
+}
+
+Dog --|> Animal
+Dog ..|> Comparable
+Dog ..|> Walkable
+Dog ..|> Eatable
+
+class Fish {
+  -name : String
+  +Fish(name : String)
+  +canEat() : boolean
+  +canSwim() : boolean
+  +getName() : String
+  +toString() : String
+  +hashCode() : int
+  +equals(obj : Object) : boolean
+  +compareTo(a : Animal) : int
+}
+
+Fish --|> Animal
+Fish ..|> Comparable
+Fish ..|> Swimable
+Fish ..|> Eatable
+
+class Exocoetidae {
+  -name : String
+  +Exocoetidae(name : String)
+  +canEat() : boolean
+  +canSwim() : boolean
+  +canFly() : boolean
+  +getName() : String
+  +toString() : String
+  +hashCode() : int
+  +equals(obj : Object) : boolean
+  +compareTo(a : Animal) : int
+}
+
+Exocoetidae --|> Fish
+Exocoetidae ..|> Comparable
+Exocoetidae ..|> Swimable
+Exocoetidae ..|> Flyable
+Exocoetidae ..|> Eatable
+
+
+@enduml

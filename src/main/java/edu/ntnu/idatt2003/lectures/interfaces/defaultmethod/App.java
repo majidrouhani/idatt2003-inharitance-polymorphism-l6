@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2003.lectures.interfaces.defaultmethod;
 
+import java.time.LocalDate;
 
 public class App {
 
@@ -14,9 +15,9 @@ public class App {
    */
   public static void main(String[] args) {
 
-    Bird bird = new Bird("Owl",2);
+    Bird parrot = new Bird("parrot", LocalDate.of(2019, 10, 1), 2);
 
-    bird.canFly();  //old method
-    bird.canFly(bird.getName());  //new method
+    parrot.canFly();  //old method
+    parrot.canFly(parrot.getName());  //new method
   }
 }

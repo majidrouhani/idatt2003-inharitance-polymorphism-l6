@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2003.lectures.interfaces.animal;
 
+import java.time.LocalDate;
 
 /**
  * Represents a bird, which is a type of animal.
@@ -8,11 +9,11 @@ package edu.ntnu.idatt2003.lectures.interfaces.animal;
  * Birds can be compared based on the number of legs they have.
  */
 public class Bird extends Animal implements Comparable<Animal>, Walkable, Flyable, Eatable {
-  private final String name;
+  private final double wingSpan;
 
-  public Bird(String name, int noOfLegs) {
-    super(noOfLegs);
-    this.name = name;
+  public Bird(String name, LocalDate birthDate, double winSpan) {
+    super(name, birthDate);
+    this.wingSpan = winSpan;
   }
 
   @Override
@@ -30,20 +31,20 @@ public class Bird extends Animal implements Comparable<Animal>, Walkable, Flyabl
     return true;
   }
 
-  public String getName() {
-    return name;
+  public double getWingSpan() {
+    return this.wingSpan;
   }
 
-  @Override
-  public String toString() {
-    return "Bird [name=" + name + "]";
-  }
 
+  
+  
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
+    long temp;
+    temp = Double.doubleToLongBits(wingSpan);
+    result = prime * result + (int) (temp ^ (temp >>> 32));
     return result;
   }
 
@@ -56,20 +57,28 @@ public class Bird extends Animal implements Comparable<Animal>, Walkable, Flyabl
     if (getClass() != obj.getClass())
       return false;
     Bird other = (Bird) obj;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
+    if (Double.doubleToLongBits(wingSpan) != Double.doubleToLongBits(other.wingSpan))
       return false;
     return true;
   }
 
   @Override
-  public int compareTo(Animal a) {
-    if (this.getNoOfLegs() == a.getNoOfLegs()) {
-      return 1;
-    } else {
-      return -1;
+  public int compareTo(Animal anotherAnimal) {
+    if (anotherAnimal instanceof Bird) {
+      Bird anotherBird = (Bird) anotherAnimal;
+      if (this.getWingSpan() == anotherBird.getWingSpan()) {
+        return 0;
+      } else if (this.getWingSpan() > anotherBird.getWingSpan()) {
+        return 1;
+      } else {
+        return -1;
+      }
     }
+    return 0;
+  }
+
+  @Override
+  public String toString() {
+    return "Bird [wingSpan=" + wingSpan + ", name=" + super.getName() + ", age=" + super.getAge() + "]";
   }
 }

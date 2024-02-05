@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * Implements the Comparable interface with Animal as the generic type.
  * Implements the Walkable and Eatable interfaces.
  */
-public class Cat extends Animal implements Comparable<Animal>, Walkable, Eatable {
+public class Cat extends Animal implements Walkable, Eatable {
   private final int numberOfLives;
 
   public int getNumberOfLives() {
@@ -43,28 +43,6 @@ public class Cat extends Animal implements Comparable<Animal>, Walkable, Eatable
   @Override
   public boolean canWalk() {
     return true;
-  }
-
-
-  /**
-   * Compares the cat to another animal based on the number of legs.
-   * 
-   * @param a  the animal to compare with
-   * @return 1 if the cat has the same number of legs as the other animal, -1 otherwise
-   */
-  @Override
-  public int compareTo(Animal anotherAnimal) {
-    if (anotherAnimal instanceof Cat) {
-      Cat anotherCat = (Cat) anotherAnimal;
-      if (this.getNumberOfLives() == anotherCat.getNumberOfLives()) {
-        return 0;
-      } else if (this.getNumberOfLives() > anotherCat.getNumberOfLives()) {
-        return 1;
-      } else {
-        return -1;
-      }
-    }
-    return 0;
   }
 
   @Override

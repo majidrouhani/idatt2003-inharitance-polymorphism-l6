@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * Dogs can eat and walk.
  * Dogs can be compared based on the number of legs they have.
  */
-public class Dog extends Animal implements Comparable<Animal>, Walkable, Eatable {
+public class Dog extends Animal implements Walkable, Eatable {
   private final String breed;
 
   public String getBreed() {
@@ -68,33 +68,6 @@ public class Dog extends Animal implements Comparable<Animal>, Walkable, Eatable
     } else if (!breed.equals(other.breed))
       return false;
     return true;
-  }
-
-  /**
-   * Compares the dog to another animal based on the number of legs they have.
-   *
-   * @param a the animal to compare with
-   * @return a negative integer if this dog has fewer legs than the other animal,
-   *         a positive integer if this dog has more legs than the other animal,
-   *         or zero if they have the same number of legs
-   */
-  @Override
-  public int compareTo(Animal anotherAnimal) {
-    if (anotherAnimal instanceof Dog) {
-      Dog anotherDog = (Dog) anotherAnimal;
-
-      int result = this.breed.compareTo(anotherDog.getBreed());
-
-      if (result < 0) {
-        return -1;
-      } else if (result > 0) {
-        return 1;
-      } else {
-        return 0;
-      }
-
-    }
-    return 0;
   }
 
   @Override

@@ -1,0 +1,43 @@
+@startuml
+
+interface Paintable {
+  +paint(): void
+}
+
+class Circle {
+  -color: String
+  -radius: double
+  +Circle(color: String, radius: double)
+  +getColor(): String
+  +getRadius(): double
+  +paint(): void
+}
+
+Circle --|> Paintable
+
+
+class Rectangle {
+  -color: String
+  -width: double
+  -height: double
+  +Rectangle(color: String, width: double, height: double)
+  +getColor(): String
+  +getWidth(): double
+  +getHeight(): double
+  +paint(): void
+}
+
+Rectangle --|> Paintable
+
+class Painter {
+  -paintableObjects: List<Paintable>
+  +Painter()
+  +getPaintableObjects(): List<Paintable>
+  +setPaintableObjects(paintableObjects: List<Paintable>): void
+  +add(paintableObject: Paintable): void
+  +paintAllObjects(): void
+}
+
+Painter --> "*" Paintable
+
+@enduml

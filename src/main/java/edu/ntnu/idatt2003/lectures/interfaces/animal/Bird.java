@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * Birds have a name and a number of legs.
  * Birds can be compared based on the number of legs they have.
  */
-public class Bird extends Animal implements Comparable<Animal>, Walkable, Flyable, Eatable {
+public class Bird extends Animal implements Walkable, Flyable, Eatable {
   private final double wingSpan;
 
   public Bird(String name, LocalDate birthDate, double winSpan) {
@@ -35,9 +35,6 @@ public class Bird extends Animal implements Comparable<Animal>, Walkable, Flyabl
     return this.wingSpan;
   }
 
-
-  
-  
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -60,21 +57,6 @@ public class Bird extends Animal implements Comparable<Animal>, Walkable, Flyabl
     if (Double.doubleToLongBits(wingSpan) != Double.doubleToLongBits(other.wingSpan))
       return false;
     return true;
-  }
-
-  @Override
-  public int compareTo(Animal anotherAnimal) {
-    if (anotherAnimal instanceof Bird) {
-      Bird anotherBird = (Bird) anotherAnimal;
-      if (this.getWingSpan() == anotherBird.getWingSpan()) {
-        return 0;
-      } else if (this.getWingSpan() > anotherBird.getWingSpan()) {
-        return 1;
-      } else {
-        return -1;
-      }
-    }
-    return 0;
   }
 
   @Override

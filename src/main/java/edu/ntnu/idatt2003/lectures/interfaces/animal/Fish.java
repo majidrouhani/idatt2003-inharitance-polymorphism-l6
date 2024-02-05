@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Represents a fish.
  * Inherits from the Animal class and implements the Comparable, Swimable, and Eatable interfaces.
  */
-public class Fish extends Animal implements Comparable<Animal>, Swimable, Eatable {
+public class Fish extends Animal implements Swimable, Eatable {
   private final String waterType;
 
   public String getWaterType() {
@@ -53,25 +53,6 @@ public class Fish extends Animal implements Comparable<Animal>, Swimable, Eatabl
     } else if (!waterType.equals(other.waterType))
       return false;
     return true;
-  }
-
-  @Override
-  public int compareTo(Animal anotherAnimal) {
-    if (anotherAnimal instanceof Fish) {
-      Fish anotherDog = (Fish) anotherAnimal;
-
-      int result = this.waterType.compareTo(anotherDog.getWaterType());
-
-      if (result < 0) {
-        return -1;
-      } else if (result > 0) {
-        return 1;
-      } else {
-        return 0;
-      }
-
-    }
-    return 0;
   }
 
   @Override

@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * The Animal class represents an abstract animal.
  * It implements the Moveable interface and provides common functionality for all animals.
  */
-public abstract class Animal implements Moveable {
+public abstract class Animal implements Comparable<Animal>, Moveable {
   private final String name;
   private final LocalDate birthDate;
   
@@ -47,4 +47,10 @@ public abstract class Animal implements Moveable {
   public float getAge() {
     return LocalDate.now().getYear() - birthDate.getYear();
   }
+
+  @Override
+  public int compareTo(Animal anotherAnimal) {
+    return this.getAge() > anotherAnimal.getAge() ? 1 : -1;
+  }
+    
 }

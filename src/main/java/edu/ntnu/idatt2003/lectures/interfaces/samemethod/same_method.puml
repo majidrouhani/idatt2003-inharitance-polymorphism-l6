@@ -1,0 +1,41 @@
+@startuml
+
+class Passenger {
+  -fullName: String
+  -owner: String
+  -gender: String
+  +Passenger(fullName: String, gender: String)
+  +Passenger(fullName: String, gender: String, owner: String)
+  +setFullName(fullName: String): void
+  +getFullName(): String
+  +setOwner(owner: String): void
+  +getOwner(): String
+  +setGender(gender: String): void
+  +getGender(): String
+  +toString(): String
+}
+
+interface Person {
+  +getFullName(): String
+  +getGender(): String
+}
+
+interface Pet {
+  +getFullName(): String
+  +getGender(): String
+  +getOwner(): String
+}
+
+Passenger --|> Person
+Passenger --|> Pet
+
+class Car {
+  -passengers: List<Passenger>
+  +getPassengers(): List<Passenger>
+  +setPassengers(passengers: List<Passenger>): void
+}
+
+Car --> "*" Passenger
+
+
+@enduml

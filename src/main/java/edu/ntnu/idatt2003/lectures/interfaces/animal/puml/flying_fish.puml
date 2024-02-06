@@ -44,9 +44,9 @@ Fish ..|> Comparable
 Fish ..|> Swimable
 Fish ..|> Eatable
 
-class Exocoetidae {
+class FlyingFish {
   -name : String
-  +Exocoetidae(name : String)
+  +FlyingFish(name : String)
   +canEat() : boolean
   +canSwim() : boolean
   +canFly() : boolean
@@ -57,11 +57,11 @@ class Exocoetidae {
   +compareTo(a : Animal) : int
 }
 
-Exocoetidae --|> Fish
-Exocoetidae ..|> Comparable
-Exocoetidae ..|> Swimable
-Exocoetidae ..|> Flyable
-Exocoetidae ..|> Eatable
+FlyingFish --|> Fish
+FlyingFish ..|> Comparable
+FlyingFish ..|> Swimable
+FlyingFish ..|> Flyable
+FlyingFish ..|> Eatable
 
 
 @enduml

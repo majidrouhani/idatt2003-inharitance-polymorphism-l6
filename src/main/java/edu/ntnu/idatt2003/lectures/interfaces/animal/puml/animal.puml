@@ -1,120 +1,115 @@
 @startuml
-
-interface Moveable {
-  canMove(): boolean;
+abstract class Animal {
+  -name: String
+  -birthDate: LocalDate
+  +Animal(name: String, birthDate: LocalDate)
+  +canMove(): boolean
+  +getName(): String
+  +getAge(): float
+  +compareTo(anotherAnimal: Animal): int
 }
-
- abstract class Animal implements Moveable {
-  - noOfLegs : int {readOnly};
-  # Animal(int noOfLegs);
-  + canMove(): boolean;
-  + getNoOfLegs(): int;
-}
-
-interface Flyable extends Moveable {
-  canFly(): boolean;
-}
-
-interface Swimable extends Moveable {
-  canSwim(): boolean;
-}
-
-interface Walkable extends Moveable {
-  canWalk() : boolean;
-}
-
-interface Comparable<T> {
-  +compareTo(o : T) : int
-}
-
 class Bird {
-  -name : String
-  +Bird(name : String, noOfLegs : int)
-  +canEat() : boolean
-  +canFly() : boolean
-  +canWalk() : boolean
-  +getName() : String
-  +toString() : String
-  +hashCode() : int
-  +equals(obj : Object) : boolean
-  +compareTo(a : Animal) : int
+  -wingSpan: double
+  +Bird(name: String, birthDate: LocalDate, wingSpan: double)
+  +canEat(): boolean
+  +canFly(): boolean
+  +canWalk(): boolean
+  +getWingSpan(): double
+  +hashCode(): int
+  +equals(obj: Object): boolean
+  +toString(): String
 }
-
-Bird --|> Animal
-Bird ..|> Comparable
-Bird ..|> Walkable
-Bird ..|> Flyable
-Bird ..|> Eatable
 
 class Cat {
-  -name : String
-  +Cat(name : String, noOfLegs : int)
-  +canEat() : boolean
-  +canWalk() : boolean
-  +getName() : String
-  +toString() : String
-  +hashCode() : int
-  +equals(obj : Object) : boolean
-  +compareTo(a : Animal) : int
+  -numberOfLives: int
+  +Cat(name: String, birthDate: LocalDate, numberOfLives: int)
+  +getNumberOfLives(): int
+  +canEat(): boolean
+  +canWalk(): boolean
+  +toString(): String
 }
-
-Cat --|> Animal
-Cat ..|> Comparable
-Cat ..|> Walkable
-Cat ..|> Eatable
 
 class Dog {
-  -name : String
-  +Dog(name : String, noOfLegs : int)
-  +canEat() : boolean
-  +canWalk() : boolean
-  +getName() : String
-  +toString() : String
-  +hashCode() : int
-  +equals(obj : Object) : boolean
-  +compareTo(a : Animal) : int
+  -breed: String
+  +Dog(name: String, birthDate: LocalDate, breed: String)
+  +getBreed(): String
+  +canEat(): boolean
+  +canWalk(): boolean
+  +hashCode(): int
+  +equals(obj: Object): boolean
+  +toString(): String
 }
 
-Dog --|> Animal
-Dog ..|> Comparable
-Dog ..|> Walkable
-Dog ..|> Eatable
 
 class Fish {
-  -name : String
-  +Fish(name : String)
-  +canEat() : boolean
-  +canSwim() : boolean
-  +getName() : String
-  +toString() : String
-  +hashCode() : int
-  +equals(obj : Object) : boolean
-  +compareTo(a : Animal) : int
+  -waterType: String
+  +Fish(name: String, birthDate: LocalDate, waterType: String)
+  +getWaterType(): String
+  +canEat(): boolean
+  +canSwim(): boolean
+  +hashCode(): int
+  +equals(obj: Object): boolean
+  +toString(): String
 }
-
-Fish --|> Animal
-Fish ..|> Comparable
-Fish ..|> Swimable
-Fish ..|> Eatable
 
 class FlyingFish {
-  -name : String
-  +FlyingFish(name : String)
-  +canEat() : boolean
-  +canSwim() : boolean
-  +canFly() : boolean
-  +getName() : String
-  +toString() : String
-  +hashCode() : int
-  +equals(obj : Object) : boolean
-  +compareTo(a : Animal) : int
+  -finSize: double
+  +FlyingFish(name: String, birthDate: LocalDate, waterType: String, finSize: double)
+  +getFinSize(): double
+  +canFly(): boolean
+  +hashCode(): int
+  +equals(obj: Object): boolean
+  +toString(): String
 }
 
-FlyingFish --|> Fish
-FlyingFish ..|> Comparable
-FlyingFish ..|> Swimable
-FlyingFish ..|> Flyable
-FlyingFish ..|> Eatable
+interface Comparable {
+  +compareTo(T: T): int
+}
 
+interface Moveable {
+  +canMove(): boolean
+}
+
+interface Walkable {
+  +canWalk(): boolean
+}
+
+interface Flyable {
+  +canFly(): boolean
+}
+
+interface Eatable {
+  +canEat(): boolean
+}
+
+interface Swimable {
+  +canSwim(): boolean
+}
+
+
+Animal --|> Comparable
+Animal --|> Moveable
+
+
+Bird --|> Animal
+Bird --|> Walkable
+Bird --|> Flyable
+Bird --|> Eatable
+
+
+Cat --|> Animal
+Cat --|> Walkable
+Cat --|> Eatable
+
+Dog --|> Animal
+Dog --|> Walkable
+Dog --|> Eatable
+
+Fish --|> Animal
+Fish --|> Swimable
+Fish --|> Eatable
+
+FlyingFish --|> Fish
+FlyingFish --|> Flyable
 
 @enduml

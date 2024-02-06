@@ -1,50 +1,52 @@
 @startuml
+class Bird {
+  -wingSpan: double
+  +Bird(name: String, birthDate: LocalDate, wingSpan: double)
+  +canEat(): boolean
+  +canFly(): boolean
+  +canWalk(): boolean
+  +getWingSpan(): double
+  +hashCode(): int
+  +equals(obj: Object): boolean
+  +toString(): String
+}
+
+abstract class Animal {
+  -name: String
+  -birthDate: LocalDate
+  +Animal(name: String, birthDate: LocalDate)
+  +canMove(): boolean
+  +getName(): String
+  +getAge(): float
+  +compareTo(anotherAnimal: Animal): int
+}
+
+interface Comparable {
+  +compareTo(T: T): int
+}
 
 interface Moveable {
-  canMove(): boolean;
+  +canMove(): boolean
 }
 
- abstract class Animal implements Moveable {
-  - noOfLegs : int {readOnly};
-  # Animal(int noOfLegs);
-  + canMove(): boolean;
-  + getNoOfLegs(): int;
+interface Walkable {
+  +canWalk(): boolean
 }
 
-interface Flyable extends Moveable {
-  canFly(): boolean;
+interface Flyable {
+  +canFly(): boolean
 }
 
-interface Swimable extends Moveable {
-  canSwim(): boolean;
+interface Eatable {
+  +canEat(): boolean
 }
 
-interface Walkable extends Moveable {
-  canWalk() : boolean;
-}
+Animal --|> Comparable
+Animal --|> Moveable
 
-interface Comparable<T> {
-  +compareTo(o : T) : int
-}
-
-class Bird {
-  -name : String
-  +Bird(name : String, noOfLegs : int)
-  +canEat() : boolean
-  +canFly() : boolean
-  +canWalk() : boolean
-  +getName() : String
-  +toString() : String
-  +hashCode() : int
-  +equals(obj : Object) : boolean
-  +compareTo(a : Animal) : int
-}
 
 Bird --|> Animal
-Bird ..|> Comparable
-Bird ..|> Walkable
-Bird ..|> Flyable
-Bird ..|> Eatable
-
-
+Bird --|> Walkable
+Bird --|> Flyable
+Bird --|> Eatable
 @enduml

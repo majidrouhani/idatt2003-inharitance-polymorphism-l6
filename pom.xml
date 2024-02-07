@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.ntnu.idatt2003.lectures</groupId>
-    <artifactId>repetition-l1</artifactId>
+    <artifactId>inheritance-polymorphism-l6</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -43,6 +43,18 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <Main-Class>edu.ntnu.idatt2003.lectures.interfaces.animal.App</Main-Class>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.3</version>
             </plugin>
@@ -51,7 +63,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>edu.ntnu.idatt2001.lectures.interfaces.animal.App</mainClass>
+                    <mainClass>edu.ntnu.idatt2003.lectures.interfaces.animal.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>

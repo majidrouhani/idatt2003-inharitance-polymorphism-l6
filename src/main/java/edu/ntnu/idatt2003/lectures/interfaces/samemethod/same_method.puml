@@ -26,8 +26,8 @@ interface Pet {
   +getOwner(): String
 }
 
-Passenger --|> Person
-Passenger --|> Pet
+Passenger ..|> Person
+Passenger ..|> Pet
 
 class Car {
   -passengers: List<Passenger>

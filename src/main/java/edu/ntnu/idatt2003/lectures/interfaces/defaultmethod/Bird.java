@@ -11,7 +11,7 @@ import edu.ntnu.idatt2003.lectures.interfaces.animal.Walkable;
  * Birds have a name and a number of legs.
  * Birds can be compared based on the number of legs they have.
  */
-public class Bird extends Animal implements Comparable<Animal>, Walkable, Flyable, Eatable {
+public class Bird extends Animal implements Walkable, Flyable, Eatable {
   private final double wingSpan;
 
   public Bird(String name, LocalDate birthDate, double winSpan) {

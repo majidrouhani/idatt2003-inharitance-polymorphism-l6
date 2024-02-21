@@ -50,7 +50,12 @@ public abstract class Animal implements Comparable<Animal>, Moveable {
 
   @Override
   public int compareTo(Animal anotherAnimal) {
-    return this.getAge() > anotherAnimal.getAge() ? 1 : -1;
-  }
-    
+    if (this.getAge() > anotherAnimal.getAge()) {
+      return 1;
+    } else if (this.getAge() < anotherAnimal.getAge()) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }    
 }
